@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>foodie</artifactId>
+        <groupId>com.qiyei</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.qiyei</groupId>
+    <artifactId>foodie-api</artifactId>
+
+    <dependencies>
+        <!--
+            common-mail
+            api -> service -> mapper -> pojo -> common
+            api -> common-mail
+            api可以使用service、pojo与common中相应的方法的
+        -->
+        <dependency>
+            <groupId>com.qiyei</groupId>
+            <artifactId>foodie-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>
