@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.qiyei</groupId>
     <artifactId>foodie-pojo</artifactId>
 
     <dependencies>
