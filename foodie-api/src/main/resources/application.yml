@@ -4,6 +4,8 @@
 #
 ############################################################
 server:
+  servlet:
+    context-path: /foodie
   port: 8088
   tomcat:
     uri-encoding: UTF-8

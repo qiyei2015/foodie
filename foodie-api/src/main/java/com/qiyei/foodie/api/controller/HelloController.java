@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @ApiOperation(value = "测试hello", notes = "测试数据", httpMethod = "GET")
-    @RequestMapping(name = "/hello" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/hello" ,method = RequestMethod.GET)
     public TestBO hello(){
         return new TestBO("王大爷","123456","123456");
     }
