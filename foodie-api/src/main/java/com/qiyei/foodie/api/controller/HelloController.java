@@ -3,6 +3,8 @@ package com.qiyei.foodie.api.controller;
 import com.qiyei.foodie.api.test.TestBO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+    private static Logger sLogger = LoggerFactory.getLogger("HelloController");
     @ApiOperation(value = "测试hello", notes = "测试数据", httpMethod = "GET")
     @RequestMapping(value = "/hello" ,method = RequestMethod.GET)
     public TestBO hello(){
+        sLogger.info("test hello world !!!");
         return new TestBO("王大爷","123456","123456");
     }
 }
