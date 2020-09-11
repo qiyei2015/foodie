@@ -26,7 +26,7 @@ public class JsonUtils {
      * @param data
      * @return
      */
-    public static String objectToJson(Object data) {
+    public static String toJson(Object data) {
     	try {
 			String string = MAPPER.writeValueAsString(data);
 			return string;
@@ -43,7 +43,7 @@ public class JsonUtils {
      * @param beanType 对象中的object类型
      * @return
      */
-    public static <T> T jsonToPojo(String jsonData, Class<T> beanType) {
+    public static <T> T toPojo(String jsonData, Class<T> beanType) {
         try {
             T t = MAPPER.readValue(jsonData, beanType);
             return t;
@@ -59,7 +59,7 @@ public class JsonUtils {
      * @param beanType
      * @return
      */
-    public static <T>List<T> jsonToList(String jsonData, Class<T> beanType) {
+    public static <T> List<T> toList(String jsonData, Class<T> beanType) {
     	JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, beanType);
     	try {
     		List<T> list = MAPPER.readValue(jsonData, javaType);

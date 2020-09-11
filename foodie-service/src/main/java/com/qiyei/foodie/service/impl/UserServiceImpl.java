@@ -42,7 +42,11 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public Users queryUser(String name, String password) {
-        return null;
+        Example example = new Example(Users.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("username",name);
+        criteria.andEqualTo("password",password);
+        return mUsersMapper.selectOneByExample(example);
     }
 
     @Override
@@ -74,6 +78,20 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public int updateUser(UserBO userBO) {
-        return 0;
+        try {
+            Example example = new Example(Users.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("username",userBO.getUsername());
+
+            Users user = new Users();
+            user.setUsername(userBO.getUsername());
+            user.setPassword(MD5Utils.getMD5Str(userBO.getPassword()));
+
+            return mUsersMapper.updateByExampleSelective(user,example);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
