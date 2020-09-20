@@ -55,41 +55,43 @@ public class Response<T> {
     public int getStatus(){
         return status;
     }
+
     public T getData(){
         return data;
     }
+
     public String getMsg(){
         return msg;
     }
 
 
-    public static <T> Response<T> createBySuccess(){
+    public static <T> Response<T> success(){
         return new Response<T>(ResponseCode.SUCCESS.getCode());
     }
 
-    public static <T> Response<T> createBySuccessMessage(String msg){
+    public static <T> Response<T> successMessage(String msg){
         return new Response<T>(ResponseCode.SUCCESS.getCode(),msg);
     }
 
-    public static <T> Response<T> createBySuccess(T data){
+    public static <T> Response<T> success(T data){
         return new Response<T>(ResponseCode.SUCCESS.getCode(),data);
     }
 
-    public static <T> Response<T> createBySuccess(String msg, T data){
+    public static <T> Response<T> success(String msg, T data){
         return new Response<T>(ResponseCode.SUCCESS.getCode(),msg,data);
     }
 
 
-    public static <T> Response<T> createByError(){
+    public static <T> Response<T> error(){
         return new Response<T>(ResponseCode.ERROR.getCode(),ResponseCode.ERROR.getDesc());
     }
 
 
-    public static <T> Response<T> createByErrorMessage(String errorMessage){
+    public static <T> Response<T> errorMessage(String errorMessage){
         return new Response<T>(ResponseCode.ERROR.getCode(),errorMessage);
     }
 
-    public static <T> Response<T> createByErrorCodeMessage(int errorCode, String errorMessage){
+    public static <T> Response<T> errorCodeMessage(int errorCode, String errorMessage){
         return new Response<T>(errorCode,errorMessage);
     }
 
