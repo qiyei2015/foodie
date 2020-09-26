@@ -1,13 +1,12 @@
-package com.qiyei.foodie.pojo.bo;
+package com.qiyei.foodie.pojo.vo;
 
-public class ShopcartBO {
+public class ShopCartVO {
 
     private String itemId;
     private String itemImgUrl;
     private String itemName;
     private String specId;
     private String specName;
-    private Integer buyCounts;
     private String priceDiscount;
     private String priceNormal;
 
@@ -51,14 +50,6 @@ public class ShopcartBO {
         this.specName = specName;
     }
 
-    public Integer getBuyCounts() {
-        return buyCounts;
-    }
-
-    public void setBuyCounts(Integer buyCounts) {
-        this.buyCounts = buyCounts;
-    }
-
     public String getPriceDiscount() {
         return priceDiscount;
     }
@@ -75,17 +66,4 @@ public class ShopcartBO {
         this.priceNormal = priceNormal;
     }
 
-    @Override
-    public String toString() {
-        return "ShopcartVO{" +
-                "itemId='" + itemId + '\'' +
-                ", itemImgUrl='" + itemImgUrl + '\'' +
-                ", itemName='" + itemName + '\'' +
-                ", specId='" + specId + '\'' +
-                ", specName='" + specName + '\'' +
-                ", buyCounts=" + buyCounts +
-                ", priceDiscount='" + priceDiscount + '\'' +
-                ", priceNormal='" + priceNormal + '\'' +
-                '}';
-    }
 }
