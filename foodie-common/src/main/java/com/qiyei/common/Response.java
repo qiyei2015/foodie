@@ -16,52 +16,52 @@ public class Response<T> {
     /**
      * 业务状态码
      */
-    private int status;
+    private int code;
     /**
      * 业务响应信息
      */
-    private String msg;
+    private String message;
     /**
      * 响应数据
      */
     private T data;
 
 
-    private Response(int status){
-        this.status = status;
+    private Response(int code){
+        this.code = code;
     }
-    private Response(int status, T data){
-        this.status = status;
+    private Response(int code, T data){
+        this.code = code;
         this.data = data;
     }
 
-    private Response(int status, String msg, T data){
-        this.status = status;
-        this.msg = msg;
+    private Response(int code, String message, T data){
+        this.code = code;
+        this.message = message;
         this.data = data;
     }
 
-    private Response(int status, String msg){
-        this.status = status;
-        this.msg = msg;
+    private Response(int code, String message){
+        this.code = code;
+        this.message = message;
     }
 
     @JsonIgnore
     //使之不在json序列化结果当中
     public boolean isSuccess(){
-        return this.status == ResponseCode.SUCCESS.getCode();
+        return this.code == ResponseCode.SUCCESS.getCode();
     }
 
-    public int getStatus(){
-        return status;
+    public int getCode(){
+        return code;
     }
 
     public T getData(){
         return data;
     }
 
-    public String getMsg(){
-        return msg;
+    public String getMessage(){
+        return message;
     }
 
 

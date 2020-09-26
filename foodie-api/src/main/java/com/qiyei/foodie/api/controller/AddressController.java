@@ -34,22 +34,12 @@ public class AddressController {
 
     @ApiOperation(value = "根据用户id查询收货地址列表", notes = "根据用户id查询收货地址列表", httpMethod = "POST")
     @RequestMapping(value = "list", method = RequestMethod.POST)
-    public Response<List<UserAddress>> list(@RequestBody String userId) {
-//        AddressBO addressBO = new AddressBO();
-//        addressBO.setUserId("1");
-//        addressBO.setUserId("1");
-//        addressBO.setMobile("1234567891011");
-//        addressBO.setProvince("四川");
-//        addressBO.setCity("CD");
-//        addressBO.setDetail("哈哈哈哈");
-//        addressBO.setDistrict("华阳");
-//        addressBO.setReceiver("大牛牛");
-//        logger.info(JsonUtils.toJson(addressBO));
+    public Response<List<UserAddress>> list(@RequestBody AddressBO addressBO) {
 
-        if (StringUtils.isBlank(userId)) {
+        if (StringUtils.isBlank(addressBO.getUserId())) {
             return Response.errorMessage("用户Id不能为空");
         }
-        List<UserAddress> list = mUserAddressService.queryAll(userId);
+        List<UserAddress> list = mUserAddressService.queryAll(addressBO.getUserId());
         return Response.success(list);
     }
 
@@ -76,7 +66,7 @@ public class AddressController {
                 return Response.errorMessage("更新地址失败");
             }
         }
-        return response;
+        return Response.successMessage("更新地址成功");
     }
 
     @ApiOperation(value = "删除地址", notes = "删除地址", httpMethod = "POST")
@@ -92,7 +82,7 @@ public class AddressController {
                 return Response.errorMessage("删除地址失败");
             }
         }
-        return response;
+        return Response.successMessage("删除地址成功");
     }
 
     @ApiOperation(value = "设置默认地址", notes = "设置默认地址", httpMethod = "POST")
@@ -105,7 +95,7 @@ public class AddressController {
         if (response.isSuccess()) {
             mUserAddressService.setDefault(addressBO.getUserId(), addressBO.getAddressId());
         }
-        return response;
+        return Response.successMessage("设置默认地址成功");
     }
 
     private Response<String> checkAddress(AddressBO addressBO) {

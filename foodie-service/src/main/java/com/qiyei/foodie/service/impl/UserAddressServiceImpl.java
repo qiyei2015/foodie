@@ -43,7 +43,12 @@ public class UserAddressServiceImpl implements IUserAddressService {
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("userId",userId);
 
-        return mUserAddressMapper.selectByExample(example);
+        UserAddress address = new UserAddress();
+        address.setUserId(userId);
+
+        List<UserAddress> list = mUserAddressMapper.select(address);
+        logger.info("query res:" + list);
+        return list;
     }
 
     @Override
