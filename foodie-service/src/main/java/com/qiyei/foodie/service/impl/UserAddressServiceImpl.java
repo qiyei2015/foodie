@@ -37,18 +37,12 @@ public class UserAddressServiceImpl implements IUserAddressService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<UserAddress> queryAll(String userId) {
-        logger.info("queryAll userId="  + userId);
 
         Example example = new Example(UserAddress.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("userId",userId);
 
-        UserAddress address = new UserAddress();
-        address.setUserId(userId);
-
-        List<UserAddress> list = mUserAddressMapper.select(address);
-        logger.info("query res:" + list);
-        return list;
+        return mUserAddressMapper.selectByExample(example);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -66,9 +60,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
         Example example = new Example(UserAddress.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("id", addressBO.getAddressId());
-
         UserAddress userAddress = toUserAddress(addressBO);
-
         return mUserAddressMapper.updateByExample(userAddress, example);
     }
 
