@@ -10,6 +10,8 @@ import com.qiyei.foodie.service.IUserService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
@@ -31,6 +33,7 @@ public class UserServiceImpl implements IUserService {
 
     private static final String USER_FACE = "http://122.152.205.72:88/group1/M00/00/05/CpoxxFw_8_qAIlFXAAAcIhVPdSg994.png";
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public Users queryUserByName(String name) {
         Example example = new Example(Users.class);
@@ -40,6 +43,7 @@ public class UserServiceImpl implements IUserService {
         return mUsersMapper.selectOneByExample(example);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public Users queryUser(String name, String password) {
         Example example = new Example(Users.class);
@@ -49,6 +53,7 @@ public class UserServiceImpl implements IUserService {
         return mUsersMapper.selectOneByExample(example);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int insertUser(UserBO userBO) {
         String userId = sid.nextShort();
@@ -76,6 +81,7 @@ public class UserServiceImpl implements IUserService {
         return mUsersMapper.insert(user);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int updateUser(UserBO userBO) {
         try {

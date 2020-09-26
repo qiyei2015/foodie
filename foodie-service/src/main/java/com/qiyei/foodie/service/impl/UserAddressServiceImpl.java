@@ -51,6 +51,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
         return list;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int add(AddressBO addressBO) {
         UserAddress userAddress = toUserAddress(addressBO);
@@ -58,6 +59,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
         return mUserAddressMapper.insert(userAddress);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int update(AddressBO addressBO) {
 
@@ -70,6 +72,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
         return mUserAddressMapper.updateByExample(userAddress, example);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int delete(String userId, String addressId) {
         Example example = new Example(UserAddress.class);
@@ -80,6 +83,7 @@ public class UserAddressServiceImpl implements IUserAddressService {
         return mUserAddressMapper.deleteByExample(example);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int setDefault(String userId, String addressId) {
 
