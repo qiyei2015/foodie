@@ -15,4 +15,17 @@ public enum CommentLevel {
         this.type = type;
         this.value = value;
     }
+
+    public static CommentLevel fromType(Integer type) {
+        switch (type) {
+            case 1:
+                return GOOD;
+            case 2:
+                return NORMAL;
+            case 3:
+                return BAD;
+            default:
+                return null;
+        }
+    }
 }

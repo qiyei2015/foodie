@@ -6,7 +6,7 @@ import com.qiyei.foodie.pojo.ItemsParam;
 import com.qiyei.foodie.pojo.ItemsSpec;
 import com.qiyei.foodie.pojo.bo.ItemsBO;
 import com.qiyei.foodie.pojo.vo.CommentLevelCountsVO;
-import com.qiyei.foodie.pojo.vo.ItemsCommentVO;
+import com.qiyei.foodie.pojo.vo.ItemsCommentsVO;
 import com.qiyei.foodie.pojo.vo.ItemsVO;
 import com.qiyei.foodie.pojo.vo.ShopCartVO;
 
@@ -59,7 +59,7 @@ public interface IItemsService {
      * @param id
      * @return
      */
-    ItemsCommentVO queryComment(String id);
+    ItemsCommentsVO queryComment(String id);
 
     /**
      * 根据规格ids查询最新的购物车中商品数据（用于刷新渲染购物车中的商品数据）

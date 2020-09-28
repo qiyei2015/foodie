@@ -101,11 +101,11 @@ public class ItemsController {
 
     @ApiOperation(value = "查询商品评论", notes = "查询商品评论", httpMethod = "POST")
     @RequestMapping(value = "comments", method = RequestMethod.POST)
-    public Response<ItemsCommentVO> comments(@RequestBody ItemsBO itemsBO) {
+    public Response<ItemsCommentsVO> comments(@RequestBody ItemsBO itemsBO) {
         if (StringUtils.isBlank(itemsBO.getCategoryId())) {
             return Response.errorMessage("itemId为NULL");
         }
-        ItemsCommentVO countsVO = mItemsService.queryComment(itemsBO.getCategoryId());
+        ItemsCommentsVO countsVO = mItemsService.queryComment(itemsBO.getCategoryId());
         return Response.success(countsVO);
     }
 

@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 用于展示商品评价的VO
  */
-public class ItemsCommentVO {
+public class ItemsCommentsVO {
 
     private Integer commentLevel;
     private String content;
