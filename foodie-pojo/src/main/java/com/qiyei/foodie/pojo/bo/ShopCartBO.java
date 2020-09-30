@@ -2,6 +2,8 @@ package com.qiyei.foodie.pojo.bo;
 
 public class ShopCartBO {
 
+    private String userId;
+
     private String itemId;
     private String itemImgUrl;
     private String itemName;
@@ -10,6 +12,14 @@ public class ShopCartBO {
     private Integer buyCounts;
     private String priceDiscount;
     private String priceNormal;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getItemId() {
         return itemId;
