@@ -2,6 +2,7 @@ package com.qiyei.foodie.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.qiyei.common.enums.BooleanEnum;
 import com.qiyei.common.enums.CommentLevel;
 import com.qiyei.foodie.mapper.*;
 import com.qiyei.foodie.pojo.*;
@@ -160,6 +161,55 @@ public class ItemsServiceImpl implements IItemsService {
     @Override
     public List<ShopCartVO> queryItemsBySpecIds(List<String> ids) {
         return null;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public ItemsSpec queryItemSpecById(String id) {
+        return mItemsSpecMapper.selectByPrimaryKey(id);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public Items queryItemById(String id) {
+        return mItemsMapper.selectByPrimaryKey(id);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public String queryItemMainImgById(String id) {
+        ItemsImg itemsImg = new ItemsImg();
+        itemsImg.setItemId(id);
+        itemsImg.setIsMain(BooleanEnum.YES.type);
+        ItemsImg result = mItemsImgMapper.selectOne(itemsImg);
+        return result != null ? result.getUrl() : "";
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void decreaseItemSpecStock(String specId, int buyCounts) {
+        // synchronized 不推荐使用，集群下无用，性能低下
+        // 锁数据库: 不推荐，导致数据库性能低下
+        // 分布式锁 zookeeper redis
+
+        // lockUtil.getLock(); -- 加锁
+
+        // 1. 查询库存
+//        int stock = 10;
+
+        // 2. 判断库存，是否能够减少到0以下
+//        if (stock - buyCounts < 0) {
+        // 提示用户库存不够
+//            10 - 3 -3 - 5 = -1
+//        }
+
+        // lockUtil.unLock(); -- 解锁
+
+
+//        int result = mItemsMapper.decreaseItemSpecStock(specId, buyCounts);
+//        if (result != 1) {
+//            throw new RuntimeException("订单创建失败，原因：库存不足!");
+//        }
     }
 
     private ItemsVO queryItemsByExample(ItemsBO itemsBO, Example example) {

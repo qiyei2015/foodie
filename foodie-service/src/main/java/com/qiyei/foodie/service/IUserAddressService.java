@@ -15,6 +15,8 @@ public interface IUserAddressService {
 
     List<UserAddress> queryAll(String userId);
 
+    UserAddress queryUserAddress(String userId,String addressId);
+
     int add(AddressBO addressBO);
 
     int update(AddressBO addressBO);

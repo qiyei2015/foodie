@@ -45,6 +45,16 @@ public class UserAddressServiceImpl implements IUserAddressService {
         return mUserAddressMapper.selectByExample(example);
     }
 
+    @Override
+    public UserAddress queryUserAddress(String userId, String addressId) {
+        Example example = new Example(UserAddress.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userId",userId);
+        criteria.andEqualTo("id",addressId);
+
+        return mUserAddressMapper.selectOneByExample(example);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public int add(AddressBO addressBO) {
