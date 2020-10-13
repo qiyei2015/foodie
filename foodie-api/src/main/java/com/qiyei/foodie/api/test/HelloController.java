@@ -1,4 +1,4 @@
-package com.qiyei.foodie.api.controller.test;
+package com.qiyei.foodie.api.test;
 
 import com.qiyei.foodie.api.test.TestBO;
 import io.swagger.annotations.Api;
