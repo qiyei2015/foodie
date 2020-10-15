@@ -3,6 +3,8 @@ package com.qiyei.foodie.pojo.bo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.Date;
+
 /**
  * @author Created by qiyei2015 on 2020/9/8.
  * @version: 1.0

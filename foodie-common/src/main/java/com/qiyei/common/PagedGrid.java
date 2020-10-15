@@ -1,15 +1,15 @@
-package com.qiyei.common.utils;
+package com.qiyei.common;
 
 import java.util.List;
 
 /**
  * 
  * @Title: PagedGridResult.java
- * @Package com.imooc.utils
+ * @Package com.qiyei.common
  * @Description: 用来返回分页Grid的数据格式
  * Copyright: Copyright (c) 2019
  */
-public class PagedGridResult {
+public class PagedGrid {
 	
 	private int page;			// 当前页数
 	private int total;			// 总页数	

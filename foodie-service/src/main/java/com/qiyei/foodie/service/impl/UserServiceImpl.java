@@ -6,6 +6,7 @@ import com.qiyei.common.utils.MD5Utils;
 import com.qiyei.foodie.mapper.UsersMapper;
 import com.qiyei.foodie.pojo.Users;
 import com.qiyei.foodie.pojo.bo.UserBO;
+import com.qiyei.foodie.pojo.bo.UserCenterBO;
 import com.qiyei.foodie.service.IUserService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,15 @@ public class UserServiceImpl implements IUserService {
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("username",name);
         criteria.andEqualTo("password",password);
+        return mUsersMapper.selectOneByExample(example);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public Users queryUserInfo(String userId) {
+        Example example = new Example(Users.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("id",userId);
         return mUsersMapper.selectOneByExample(example);
     }
 
@@ -99,5 +109,15 @@ public class UserServiceImpl implements IUserService {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    @Override
+    public Users updateUserFace(String id, String url) {
+        return null;
+    }
+
+    @Override
+    public Users updateUserInfo(String id, UserCenterBO userCenterBO) {
+        return null;
     }
 }

@@ -1,5 +1,6 @@
 package com.qiyei.foodie.service.impl;
 
+import com.qiyei.common.PagedGrid;
 import com.qiyei.common.enums.BooleanEnum;
 import com.qiyei.common.enums.OrderStatusEnum;
 import com.qiyei.foodie.mapper.OrderItemsMapper;
@@ -8,6 +9,7 @@ import com.qiyei.foodie.mapper.OrdersMapper;
 import com.qiyei.foodie.pojo.*;
 import com.qiyei.foodie.pojo.bo.SubmitOrderBO;
 import com.qiyei.foodie.pojo.vo.MerchantOrdersVO;
+import com.qiyei.foodie.pojo.vo.OrderStatusCountsVO;
 import com.qiyei.foodie.pojo.vo.OrderVO;
 import com.qiyei.foodie.service.IItemsService;
 import com.qiyei.foodie.service.IOrdersService;
@@ -179,5 +181,35 @@ public class OrdersServiceImpl implements IOrdersService {
         paidStatus.setPayTime(new Date());
 
         return mOrderStatusMapper.updateByPrimaryKeySelective(paidStatus);
+    }
+
+    @Override
+    public OrderStatusCountsVO getOrderStatusCounts(String userId) {
+        return null;
+    }
+
+    @Override
+    public boolean updateReceiveOrderStatus(String orderId) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteOrder(String userId, String orderId) {
+        return false;
+    }
+
+    @Override
+    public PagedGrid getOrdersTrend(String userId, Integer page, Integer pageSize) {
+        return null;
+    }
+
+    @Override
+    public PagedGrid queryMyOrders(String userId, Integer orderStatus, Integer page, Integer pageSize) {
+        return null;
+    }
+
+    @Override
+    public void updateDeliverOrderStatus(String orderId) {
+
     }
 }
