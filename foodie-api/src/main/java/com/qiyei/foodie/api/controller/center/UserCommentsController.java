@@ -73,8 +73,11 @@ public class UserCommentsController extends BaseController {
             return Response.errorMessage("评论内容不能为空！");
         }
 
-        int id = mCommentService.saveComments(orderId, userId, commentList);
-        return Response.success(id);
+        if (mCommentService.saveComments(orderId, userId, commentList)){
+            return Response.success();
+        } else {
+            return Response.errorMessage("保存失败");
+        }
     }
 
     @ApiOperation(value = "查询我的评价", notes = "查询我的评价", httpMethod = "POST")

@@ -2,10 +2,7 @@ package com.qiyei.foodie.service;
 
 import com.qiyei.common.PagedGrid;
 import com.qiyei.foodie.pojo.OrderItems;
-import com.qiyei.foodie.pojo.Users;
 import com.qiyei.foodie.pojo.bo.OrderItemsCommentBO;
-import com.qiyei.foodie.pojo.bo.UserBO;
-import com.qiyei.foodie.pojo.bo.UserCenterBO;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public interface ICommentService {
      * @param commentList
      * @return
      */
-    int saveComments(String orderId, String userId, List<OrderItemsCommentBO> commentList);
+    boolean saveComments(String orderId, String userId, List<OrderItemsCommentBO> commentList);
 
     /**
      * 查询我的评论
