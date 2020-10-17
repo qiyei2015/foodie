@@ -40,7 +40,7 @@ public class BaseController {
     public Response<Orders> checkUserOrder(String userId, String orderId) {
         Orders order = mOrdersService.queryOrder(userId, orderId);
         if (order == null) {
-            return Response.errorMessage("订单不存在！");
+            return Response.error("订单不存在！");
         }
         return Response.success(order);
     }

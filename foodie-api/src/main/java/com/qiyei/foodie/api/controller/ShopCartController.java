@@ -1,24 +1,16 @@
 package com.qiyei.foodie.api.controller;
 
 import com.qiyei.common.Response;
-import com.qiyei.foodie.pojo.Items;
-import com.qiyei.foodie.pojo.ItemsImg;
-import com.qiyei.foodie.pojo.ItemsParam;
-import com.qiyei.foodie.pojo.ItemsSpec;
-import com.qiyei.foodie.pojo.bo.ItemsBO;
 import com.qiyei.foodie.pojo.bo.ShopCartBO;
 import com.qiyei.foodie.pojo.vo.*;
 import com.qiyei.foodie.service.IItemsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author Created by qiyei2015 on 2020/9/7.
@@ -41,11 +33,11 @@ public class ShopCartController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public Response<ItemsVO> list(@RequestBody ShopCartBO shopCartBO) {
         if (shopCartBO.getUserId() == null) {
-            return Response.errorMessage("userId为NULL");
+            return Response.error("userId为NULL");
         }
 
         if (StringUtils.isBlank(shopCartBO.getItemId())) {
-            return Response.errorMessage("ItemId为NULL");
+            return Response.error("ItemId为NULL");
         }
 
         System.out.println(shopCartBO);
@@ -59,15 +51,15 @@ public class ShopCartController {
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public Response<ItemsVO> delete(@RequestBody ShopCartBO shopCartBO) {
         if (StringUtils.isBlank(shopCartBO.getUserId())) {
-            return Response.errorMessage("userId为NULL");
+            return Response.error("userId为NULL");
         }
 
         if (StringUtils.isBlank(shopCartBO.getItemId())) {
-            return Response.errorMessage("ItemId为NULL");
+            return Response.error("ItemId为NULL");
         }
 
         if (StringUtils.isBlank(shopCartBO.getSpecId())) {
-            return Response.errorMessage("SpecId为NULL");
+            return Response.error("SpecId为NULL");
         }
 
         // TODO 用户在页面删除购物车中的商品数据，如果此时用户已经登录，则需要同步删除后端购物车中的商品

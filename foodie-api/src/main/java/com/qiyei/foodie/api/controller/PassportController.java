@@ -36,7 +36,7 @@ public class PassportController {
     @RequestMapping(value = "userExist", method = RequestMethod.GET)
     public Response<String> userExist(@RequestParam String name) {
         if (StringUtils.isBlank(name)) {
-            return Response.errorMessage("用户名不能为空");
+            return Response.error("用户名不能为空");
         }
         Users user = mUserService.queryUserByName(name);
         if (user == null) {
@@ -55,22 +55,22 @@ public class PassportController {
         String confirmPassword = userBO.getConfirmPassword();
 
         if (StringUtils.isBlank(name) || StringUtils.isBlank(password) || StringUtils.isBlank(confirmPassword)) {
-            return Response.errorMessage("用户名或密码不能为空");
+            return Response.error("用户名或密码不能为空");
         }
 
         if (!password.equals(confirmPassword)) {
-            return Response.errorMessage("密码与确认密码不一致");
+            return Response.error("密码与确认密码不一致");
         }
 
         Users user = mUserService.queryUserByName(name);
         if (user != null) {
-            return Response.errorMessage("用户名已经注册，请更换用户名注册");
+            return Response.error("用户名已经注册，请更换用户名注册");
         }
         int index = mUserService.insertUser(userBO);
         if (index > 0) {
-            return Response.successMessage("注册成功");
+            return Response.success("注册成功");
         } else {
-            return Response.errorMessage("注册失败");
+            return Response.error("注册失败");
         }
     }
 
@@ -80,18 +80,18 @@ public class PassportController {
         String name = userBO.getUsername();
         String password = userBO.getPassword();
         if (StringUtils.isBlank(name) || StringUtils.isBlank(password)) {
-            return Response.errorMessage("用户名或密码不能为空");
+            return Response.error("用户名或密码不能为空");
         }
         Users user = null;
         try {
             //实现登录
             user = mUserService.queryUser(name, MD5Utils.getMD5Str(password));
             if (user == null) {
-                return Response.errorMessage("用户名或密码不正确");
+                return Response.error("用户名或密码不正确");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return Response.errorMessage("密码异常");
+            return Response.error("密码异常");
         }
 
         user = setNullProperty(user);
@@ -114,10 +114,10 @@ public class PassportController {
         String confirmPassword = userBO.getConfirmPassword();
 
         if (StringUtils.isBlank(name) || StringUtils.isBlank(password) || StringUtils.isBlank(oldPassword) || StringUtils.isBlank(confirmPassword)) {
-            return Response.errorMessage("用户名或密码不能为空");
+            return Response.error("用户名或密码不能为空");
         }
         if (!password.equals(confirmPassword)) {
-            return Response.errorMessage("密码与确认密码不一致");
+            return Response.error("密码与确认密码不一致");
         }
 
         Users user = null;
@@ -125,18 +125,18 @@ public class PassportController {
             //实现登录
             user = mUserService.queryUser(name, MD5Utils.getMD5Str(oldPassword));
             if (user == null) {
-                return Response.errorMessage("用户名或旧密码不正确");
+                return Response.error("用户名或旧密码不正确");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return Response.errorMessage("旧密码异常");
+            return Response.error("旧密码异常");
         }
 
         int count = mUserService.updateUser(userBO);
         if (count > 0) {
             return Response.success("修改密码成功");
         } else {
-            return Response.errorMessage("修改密码失败");
+            return Response.error("修改密码失败");
         }
     }
 

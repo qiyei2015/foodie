@@ -38,12 +38,12 @@ public class UserCommentsController extends BaseController {
         // 判断用户和订单是否关联
         Response<Orders> checkResult = checkUserOrder(userId, orderId);
         if (checkResult.getCode() != HttpStatus.OK.value()) {
-            return Response.errorMessage("用户与订单部关联");
+            return Response.error("用户与订单部关联");
         }
         // 判断该笔订单是否已经评价过，评价过了就不再继续
         Orders myOrder = checkResult.getData();
         if (myOrder.getIsComment() == BooleanEnum.YES.type) {
-            return Response.errorMessage("该笔订单已经评价");
+            return Response.error("该笔订单已经评价");
         }
 
         List<OrderItems> list = mCommentService.queryPendingComment(orderId);
@@ -70,13 +70,13 @@ public class UserCommentsController extends BaseController {
         }
         // 判断评论内容list不能为空
         if (commentList == null || commentList.isEmpty() || commentList.size() == 0) {
-            return Response.errorMessage("评论内容不能为空！");
+            return Response.error("评论内容不能为空！");
         }
 
         if (mCommentService.saveComments(orderId, userId, commentList)){
             return Response.success();
         } else {
-            return Response.errorMessage("保存失败");
+            return Response.error("保存失败");
         }
     }
 
@@ -91,7 +91,7 @@ public class UserCommentsController extends BaseController {
             @RequestParam Integer pageSize) {
 
         if (StringUtils.isBlank(userId)) {
-            return Response.errorMessage("userid为NULL");
+            return Response.error("userid为NULL");
         }
         if (page == null) {
             page = 1;

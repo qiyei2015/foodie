@@ -23,7 +23,7 @@ public class UserOrdersController extends BaseController {
     public Response statusCounts(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId) {
 
         if (StringUtils.isBlank(userId)) {
-            return Response.errorMessage("用户id为空");
+            return Response.error("用户id为空");
         }
 
         OrderStatusCountsVO result = mOrdersService.getOrderStatusCounts(userId);
@@ -44,7 +44,7 @@ public class UserOrdersController extends BaseController {
             @RequestParam Integer pageSize) {
 
         if (StringUtils.isBlank(userId)) {
-            return Response.errorMessage("用户id为空");
+            return Response.error("用户id为空");
         }
         if (page == null) {
             page = 1;
@@ -65,7 +65,7 @@ public class UserOrdersController extends BaseController {
             @RequestParam String orderId) throws Exception {
 
         if (StringUtils.isBlank(orderId)) {
-            return Response.errorMessage("订单ID不能为空");
+            return Response.error("订单ID不能为空");
         }
         mOrdersService.updateDeliverOrderStatus(orderId);
         return Response.success();
@@ -87,7 +87,7 @@ public class UserOrdersController extends BaseController {
 
         boolean res = mOrdersService.updateReceiveOrderStatus(orderId);
         if (!res) {
-            return Response.errorMessage("订单确认收货失败！");
+            return Response.error("订单确认收货失败！");
         }
 
         return Response.success();
@@ -108,7 +108,7 @@ public class UserOrdersController extends BaseController {
 
         boolean res = mOrdersService.deleteOrder(userId, orderId);
         if (!res) {
-            return Response.errorMessage("订单删除失败！");
+            return Response.error("订单删除失败！");
         }
 
         return Response.success();
@@ -125,7 +125,7 @@ public class UserOrdersController extends BaseController {
             @RequestParam Integer pageSize) {
 
         if (StringUtils.isBlank(userId)) {
-            return Response.errorMessage("用户id为空");
+            return Response.error("用户id为空");
         }
         if (page == null) {
             page = 1;

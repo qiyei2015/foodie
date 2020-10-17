@@ -40,7 +40,7 @@ public class ItemsController {
     @RequestMapping(value = "list", method = RequestMethod.POST)
     public Response<ItemsVO> list(@RequestBody ItemsBO itemsBO) {
         if (itemsBO.getCategoryId() == null) {
-            return Response.errorMessage("categoryId为NULL");
+            return Response.error("categoryId为NULL");
         }
         if (itemsBO.getPage() == null) {
             itemsBO.setPage(0);
@@ -56,7 +56,7 @@ public class ItemsController {
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public Response<ItemsVO> search(@RequestBody ItemsBO itemsBO) {
         if (StringUtils.isBlank(itemsBO.getKeywords())) {
-            return Response.errorMessage("keywords为NULL");
+            return Response.error("keywords为NULL");
         }
         if (itemsBO.getPage() == null) {
             itemsBO.setPage(0);
@@ -71,7 +71,7 @@ public class ItemsController {
     @RequestMapping(value = "info/{itemId}", method = RequestMethod.GET)
     public Response<ItemsInfoVO> info(@ApiParam(name = "itemId", value = "商品id", required = true) @PathVariable String itemId) {
         if (StringUtils.isBlank(itemId)) {
-            return Response.errorMessage("itemId为NULL");
+            return Response.error("itemId为NULL");
         }
 
         Items item = mItemsService.queryItemsById(itemId);
@@ -92,7 +92,7 @@ public class ItemsController {
     @RequestMapping(value = "commentLevel", method = RequestMethod.POST)
     public Response<CommentLevelCountsVO> commentLevel(@RequestBody ItemsBO itemsBO) {
         if (StringUtils.isBlank(itemsBO.getCategoryId())) {
-            return Response.errorMessage("itemId为NULL");
+            return Response.error("itemId为NULL");
         }
 
         CommentLevelCountsVO countsVO = mItemsService.queryCommentCounts(itemsBO.getCategoryId());
@@ -103,7 +103,7 @@ public class ItemsController {
     @RequestMapping(value = "comments", method = RequestMethod.POST)
     public Response<ItemsCommentsVO> comments(@RequestBody ItemsBO itemsBO) {
         if (StringUtils.isBlank(itemsBO.getCategoryId())) {
-            return Response.errorMessage("itemId为NULL");
+            return Response.error("itemId为NULL");
         }
         ItemsCommentsVO countsVO = mItemsService.queryComment(itemsBO.getCategoryId());
         return Response.success(countsVO);
@@ -113,7 +113,7 @@ public class ItemsController {
     @RequestMapping(value = "refresh", method = RequestMethod.POST)
     public Response<List<ShopCartVO>> refresh(@RequestBody List<String> list) {
         if (list == null || list.size() == 0) {
-            return Response.errorMessage("ids为NULL");
+            return Response.error("ids为NULL");
         }
         return Response.success(mItemsService.queryItemsBySpecIds(list));
     }

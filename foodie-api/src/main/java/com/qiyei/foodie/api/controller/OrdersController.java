@@ -38,7 +38,7 @@ public class OrdersController extends BaseController {
     public Response<String> create(@RequestBody SubmitOrderBO submitOrderBO, HttpServletRequest request, HttpServletResponse response) {
 
         if (submitOrderBO.getPayMethod() != PayMethod.WEIXIN.type && submitOrderBO.getPayMethod() != PayMethod.ALIPAY.type ) {
-            return Response.errorMessage("支付方式不支持！");
+            return Response.error("支付方式不支持！");
         }
 
         // 1. 创建订单
@@ -77,7 +77,7 @@ public class OrdersController extends BaseController {
         Response paymentResult = responseEntity.getBody();
         if (paymentResult.getCode() != 200) {
             logger.error("发送错误：{}", paymentResult.getMessage());
-            return Response.errorMessage("支付中心订单创建失败，请联系管理员！");
+            return Response.error("支付中心订单创建失败，请联系管理员！");
         }
 
         return Response.success(orderId);

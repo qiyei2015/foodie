@@ -80,7 +80,7 @@ public class UserCenterController {
                     if (!suffix.equalsIgnoreCase("png") &&
                             !suffix.equalsIgnoreCase("jpg") &&
                             !suffix.equalsIgnoreCase("jpeg") ) {
-                        return Response.errorMessage("图片格式不正确！");
+                        return Response.error("图片格式不正确！");
                     }
 
                     // face-{userid}.png
@@ -117,7 +117,7 @@ public class UserCenterController {
             }
 
         } else {
-            return Response.errorMessage("文件不能为空！");
+            return Response.error("文件不能为空！");
         }
 
         // 获取图片服务地址
@@ -154,7 +154,7 @@ public class UserCenterController {
         // 判断BindingResult是否保存错误的验证信息，如果有，则直接return
         if (result.hasErrors()) {
             Map<String, String> errorMap = getErrors(result);
-            return Response.errorMessage(JsonUtils.toJson(errorMap));
+            return Response.error(JsonUtils.toJson(errorMap));
         }
 
         Users userResult = mUserService.updateUserInfo(userId, userCenterBO);
