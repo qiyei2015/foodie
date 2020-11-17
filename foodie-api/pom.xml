@@ -9,6 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 打包war [1] -->
+    <packaging>war</packaging>
+
     <groupId>com.qiyei</groupId>
     <artifactId>foodie-api</artifactId>
 
